@@ -7,8 +7,12 @@ pokemonList=[
 
 for (let i = 0; i < pokemonList.length; i++) {
     console.log(pokemonList[i].name + " height = " +pokemonList[i].height);
-    document.write(pokemonList[i].name + " height = " +pokemonList[i].height + "<br>")   
+    document.write(pokemonList[i].name + " height = " +pokemonList[i].height);
+    if (pokemonList[i].height > 30)
+    {document.write(" - Wow, that's big!")};
+    document.write("<br>")  
 }
 // added a list of Pokemon objects to the DOM along with their height
 // included a line break for visual appearance
 // Works in Edge, but error when I try to run on Chrome: "This document requires 'TrustedHTML' assignment."
+// added a condition to check for height above 30 and print a message tot he DOM

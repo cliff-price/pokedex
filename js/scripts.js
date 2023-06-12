@@ -36,7 +36,7 @@ for (let i = 0; i < pokemonList.length; i++) {
     {document.write(" - Wow, that's big!")};
     document.write("<br>")  */
 
-    pokemonListExternal.forEach(function(user) {
+pokemonListExternal.forEach(function(user) {
     //  Why doesn't pokemonListExternal work?  It shows up as an Arry wusing console.log(), but the va;lues are undefined inteh forEACDH function.
 //pokemonRepository.getAll().forEach(function(user) {
     console.log(user.name + " height = " +user.height);

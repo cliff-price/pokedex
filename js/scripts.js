@@ -25,7 +25,7 @@ let pokemonRepository = (function () {
 console.log(pokemonRepository.getAll());
 
 let pokemonListExternal = [];
-pokemonListExternal = [pokemonRepository.getAll()];
+pokemonListExternal = pokemonRepository.getAll();
 console.log(pokemonListExternal);
 
 /*OLD CODE:
@@ -36,15 +36,17 @@ for (let i = 0; i < pokemonList.length; i++) {
     {document.write(" - Wow, that's big!")};
     document.write("<br>")  */
 
-// pokemonListExternal.forEach(function(user) {
+    pokemonListExternal.forEach(function(user) {
     //  Why doesn't pokemonListExternal work?  It shows up as an Arry wusing console.log(), but the va;lues are undefined inteh forEACDH function.
-pokemonRepository.getAll().forEach(function(user) {
+//pokemonRepository.getAll().forEach(function(user) {
     console.log(user.name + " height = " +user.height);
     document.write(user.name + " height = " +user.height);
     if (user.height > 30)
     {document.write(" - Wow, that's big!")};
     document.write("<br>");
 });
+
+console.log(pokemonListExternal);
 // added a list of Pokemon objects to the DOM along with their height
 // included a line break for visual appearance
 // Works in Edge, but error when I try to run on Chrome: "This document requires 'TrustedHTML' assignment."

@@ -1,19 +1,37 @@
 let pokemonRepository = (function () {
-    let pokemonListInternal = [];
+let pokemonListInternal = [];
 
     function add(pokemon) {
       pokemonListInternal.push(pokemon);
     }
-  
+
+    function addListItem(pokemon) {
+      let pokemonList = document.querySelector('.pokemon-list'); 
+      let listItem = document.createElement('li');
+      let button = document.createElement('button');
+      button.innerText = pokemon.name;
+      button.classList.add('buttonItem');
+      listItem.appendChild(button);
+      pokemonList.appendChild(listItem);
+      }
+
+      
     function getAll() {
       return pokemonListInternal;
     }
   
     return {
       add: add,
+<<<<<<< Updated upstream
       getAll: getAll
     };
   })();
+=======
+      getAll: getAll,
+      addListItem: addListItem
+    }})
+  ();
+>>>>>>> Stashed changes
 
   pokemonRepository.add({name:"Bulbasaur",height:7,type:["grass","poison"]});
   pokemonRepository.add({name:"Eve",height:22,type:["water","speed"]});
@@ -31,6 +49,7 @@ for (let i = 0; i < pokemonList.length; i++) {
     {document.write(" - Wow, that's big!")};
     document.write("<br>")  */
 
+<<<<<<< Updated upstream
 pokemonListExternal.forEach(function(user) {
     //  pokemonListExternal is interchangeable in teh forEach loop with pokemonRepository.gatAll()
 //pokemonRepository.getAll().forEach(function(user) {
@@ -45,9 +64,22 @@ listItem.appendChild(button);
 console.log(button);
 console.log(listItem);
 pokemonList.appendChild(listItem);
+=======
+//pokemonListExternal.forEach(function(user) {
+    //  pokemonListExternal is interchangeable in the forEach loop with pokemonRepository.gatAll()
+pokemonRepository.getAll().forEach(function(pokemon) {
+  pokemonRepository.addListItem(pokemon);
+//let pokemonList = document.querySelector('.pokemon-list'); 
+//let listItem = document.createElement('li');
+//let button = document.createElement('button');
+//button.innerText = user.name;
+//button.classList.add('buttonItem');
+//listItem.appendChild(button);
+//pokemonList.appendChild(listItem);
+>>>>>>> Stashed changes
 });
 
 console.log(pokemonListExternal);
-// added a list of Pokemon objects to the DOM along with their height
+  // added a list of Pokemon objects to the DOM along with their height
 // included a line break for visual appearance
 // added a condition to check for height above 30 and print a message to the DOM

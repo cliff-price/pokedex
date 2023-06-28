@@ -22,10 +22,18 @@ let pokemonListInternal = [];
   
     return {
       add: add,
+
+
+
+      getAll: getAll
+    };
+  })();
+
+
       getAll: getAll,
       addListItem: addListItem
-    }})
-  ();
+    ;
+
 
   pokemonRepository.add({name:"Bulbasaur",height:7,type:["grass","poison"]});
   pokemonRepository.add({name:"Eve",height:22,type:["water","speed"]});
@@ -43,6 +51,22 @@ for (let i = 0; i < pokemonList.length; i++) {
     {document.write(" - Wow, that's big!")};
     document.write("<br>")  */
 
+
+pokemonListExternal.forEach(function(user) {
+    //  pokemonListExternal is interchangeable in teh forEach loop with pokemonRepository.gatAll()
+//pokemonRepository.getAll().forEach(function(user) {
+let pokemonList = document.querySelector('.pokemon-list'); 
+//console.log(pokemonList);
+let listItem = document.createElement('li');
+let button = document.createElement('button');
+button.innerText = user.name;
+console.log(user.name);
+button.classList.add('buttonItem');
+listItem.appendChild(button);
+console.log(button);
+console.log(listItem);
+pokemonList.appendChild(listItem);
+
 //pokemonListExternal.forEach(function(user) {
     //  pokemonListExternal is interchangeable in the forEach loop with pokemonRepository.gatAll()
 pokemonRepository.getAll().forEach(function(pokemon) {
@@ -54,6 +78,7 @@ pokemonRepository.getAll().forEach(function(pokemon) {
 //button.classList.add('buttonItem');
 //listItem.appendChild(button);
 //pokemonList.appendChild(listItem);
+
 });
 
 console.log(pokemonListExternal);

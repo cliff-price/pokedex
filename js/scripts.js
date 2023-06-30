@@ -13,8 +13,12 @@ let pokemonRepository = (function () {
         button.classList.add('buttonItem');
         listItem.appendChild(button);
         pokemonList.appendChild(listItem);
+        button.addEventListener('click', showDetails(pokemon));
         }
   
+        function showDetails(pokemon){
+          console.log(pokemon.name);
+        } 
         
       function getAll() {
         return pokemonListInternal;

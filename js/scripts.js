@@ -1,8 +1,9 @@
 let pokemonRepository = (function () {
-  let pokemonListInternal = [];
+  let pokemonList = [];
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
   
       function add(pokemon) {
-        pokemonListInternal.push(pokemon);
+        pokemonList.push(pokemon);
       }
   
       function addListItem(pokemon) {
@@ -15,52 +16,61 @@ let pokemonRepository = (function () {
         pokemonList.appendChild(listItem);
         button.addEventListener('click', function(event){showDetails(pokemon)});
         }
-  
-        function showDetails(pokemon){
-          console.log(pokemon.name);
-        } 
-        
+
+        function loadList() {
+          return fetch(apiUrl).then(function (response) {
+            return response.json();
+          }).then(function (json) {
+            json.results.forEach(function (item) {
+              let pokemon = {
+                name: item.name,
+                detailsUrl: item.url
+              };
+              add(pokemon);
+            });
+          }).catch(function (e) {
+            console.error(e);
+          })
+        }
+          
       function getAll() {
-        return pokemonListInternal;
+        return pokemonList;
       }
     
+      function showDetails(pokemon) {
+        loadDetails(pokemon).then(function () {
+          console.log(pokemon);
+        });
+      }
+
+      function loadDetails(item) {
+        let url = item.detailsUrl;
+        return fetch(url).then(function (response) {
+          return response.json();
+        }).then(function (details) {
+          // Now we add the details to the item
+          item.imageUrl = details.sprites.front_default;
+          item.height = details.height;
+          item.types = details.types;
+        }).catch(function (e) {
+          console.error(e);
+        });
+      }
+
       return {
         add: add,
         getAll: getAll,
-        addListItem: addListItem
+        addListItem: addListItem,
+        loadList: loadList,
+        loadDetails: loadDetails,
+        showDetails: showDetails
       }})
     ();
   
-    pokemonRepository.add({name:"Bulbasaur",height:7,type:["grass","poison"]});
-    pokemonRepository.add({name:"Eve",height:22,type:["water","speed"]});
-    pokemonRepository.add({name:"Idunno", height:99,type:["gotme","gotyou"]});
-    // I am not famliar with Pokeman so I just made up names and characteristics>
-  
-  let pokemonListExternal = [];
-  pokemonListExternal = pokemonRepository.getAll();
-  
-  /*OLD CODE:
-  for (let i = 0; i < pokemonList.length; i++) {
-      console.log(pokemonList[i].name + " height = " +pokemonList[i].height);
-      document.write(pokemonList[i].name + " height = " +pokemonList[i].height);
-      if (pokemonList[i].height > 30)
-      {document.write(" - Wow, that's big!")};
-      document.write("<br>")  */
-  
-  //pokemonListExternal.forEach(function(user) {
-      //  pokemonListExternal is interchangeable in the forEach loop with pokemonRepository.gatAll().  Use pokemonRepository.getAll().
+    pokemonRepository.loadList().then(function() {
+      // Now the data is loaded!
   pokemonRepository.getAll().forEach(function(pokemon) {
     pokemonRepository.addListItem(pokemon);
-  //let pokemonList = document.querySelector('.pokemon-list'); 
-  //let listItem = document.createElement('li');
-  //let button = document.createElement('button');
-  //button.innerText = user.name;
-  //button.classList.add('buttonItem');
-  //listItem.appendChild(button);
-  //pokemonList.appendChild(listItem);
+    });
+
   });
-  
-  console.log(pokemonListExternal);
-    // added a list of Pokemon objects to the DOM along with their height
-  // included a line break for visual appearance
-  // added a condition to check for height above 30 and print a message to the DOM

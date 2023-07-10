@@ -1,2 +1,2 @@
-# simple-js-app
+# pokedex-app
  First javascript application

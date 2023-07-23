@@ -19,8 +19,8 @@ let pokemonRepository = (function () {
         listItem.append(button);
         pokemonList.append(listItem);
 
-        showDetails(pokemon)
-      }
+       showDetails(pokemon)
+       }
 
         function loadList() {
           return fetch(apiUrl).then(function (response) {
@@ -43,32 +43,27 @@ let pokemonRepository = (function () {
       }
     
       function showDetails(pokemon) {
-        let modalBody=(".modal-body");
-        let modalTitle=(".modal-title")
+        let modalBody=document.querySelector('.modal-body'); 
+        let modalTitle=document.querySelector('.modal-body');
+        console.log(modalTitle);
         // clear the modal body and title
-        modalBody.empty();
-        modalTitle.empty();
+        modalBody="";
+        modalTitle="";
 
         loadDetails(pokemon).then(function () {
 
-          let nameElement = $("<h1>" + pokemon.name + "</h1>");
-          let heightElement = $("<p>" + "height : " + pokemon.height + "</p>");
-          let imageElement = S('<img class = " modal-img" style="width:50%">');
-          imageElement.attr("src", pokemon.imageUrl);
-
-       /*   let nameElement = document.createElement('h1');
+          let nameElement = document.createElement('h1');
           nameElement.innerText = pokemon.name
           let heightElement = document.createElement('h1');
           heightElement.innerText = "height = " + pokemon.height;
           let imageElement = document.createElement('img');
           imageElement.src = pokemon.imageUrl;
           imageElement.width = 250;
-       */
-          modalTitle.append(nameElement);
-          modalBody.append(heightElement);
-          modalBody.append(imageElement);
 
-          console.log(nameElement)
+       
+           modalTitle.innerChild(nameElement);
+//          modalBody.append(heightElement);
+//          modalBody.append(imageElement);
          });
       }
 
@@ -97,7 +92,7 @@ let pokemonRepository = (function () {
 
     })
     ();
-  
+
   pokemonRepository.loadList().then(function() {
       // Now the data is loaded!
   pokemonRepository.getAll().forEach(function(pokemon) {

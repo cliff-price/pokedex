@@ -19,7 +19,7 @@ let pokemonRepository = (function () {
         listItem.append(button);
         pokemonList.append(listItem);
 
-//       showDetails(pokemon);
+       showDetails(pokemon);
 
        }
 
@@ -103,7 +103,5 @@ let pokemonRepository = (function () {
   pokemonRepository.getAll().forEach(function(pokemon) {
     pokemonRepository.addListItem(pokemon);
     });
-
-    showDetails(pokemon);
 
   });

@@ -20,7 +20,7 @@ let pokemonRepository = (function () {
         pokemonList.append(listItem);
 
 //       showDetails(pokemon);
-
+ 
        }
 
         function loadList() {

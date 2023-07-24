@@ -21,7 +21,6 @@ let pokemonRepository = (function () {
 
        showDetails(pokemon);
 
- 
       }
 
         function loadList() {
